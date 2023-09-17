@@ -1,0 +1,96 @@
+# CONTACT MANAGEMENT SYSTEM UPDATED 
+#RITIK YADAV 
+contacts = {}
+
+def add():
+    name = input("Enter name: ")
+    address = input("Enter the address: ")
+    email = input("Enter the email: ")
+    phone_number = input("Enter phone number: ")
+    
+    
+    if name not in contacts:
+        contacts[name] = {'phone': phone_number, 'email': email, 'address': address}
+        print("Contact added successfully.")
+    else:
+        print(f"Contact {name} already exists.")
+
+def search(name):
+    if name in contacts:
+        print(f"Name: {name}")
+        print("Phone Number:", contacts[name]['phone'])
+        print("Email:", contacts[name]['email'])
+        print("Address:", contacts[name]['address'])
+    else:
+        print("Contact not found.")
+
+def update():
+    name = input("Enter the name of the contact: ")
+    if name in contacts:
+        print("\nWhat do you want to update?")
+        print("1. Name")
+        print("2. Address")
+        print("3. Email")
+        print("4. Phone Number")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            new_name = input("Enter the new name: ")
+            contacts[name]['name'] = new_name
+            print("Update successful.")
+        elif choice == '2':
+            new_address = input("Enter the new address: ")
+            contacts[name]['address'] = new_address
+            print("Update successful.")
+        elif choice == '3':
+            new_email = input("Enter the new email: ")
+            contacts[name]['email'] = new_email
+            print("Update successful.")
+        elif choice == '4':
+            new_number = input("Enter the new phone number: ")
+            contacts[name]['phone'] = new_number
+            print("Update successful.")
+        else:
+            print("Invalid choice.")
+    else:
+        print("Contact not found.")
+
+def delete():
+    name = input("Enter the name: ")
+    if name in contacts:
+        contacts.pop(name)
+        print("Contact deleted successfully.")
+    else:
+        print("Contact not found.")
+
+
+while True:
+    print("\nCONTACT MANAGEMENT SYSTEM")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Search Contact")
+    print("4. Update Contact")
+    print("5. Delete Contact")
+    print("6. Exit")
+    choice = input("Enter your choice: ")
+    
+    if choice == '1':
+        add()
+    elif choice == '2':
+        for name, info in contacts.items():
+            print(f"Name: {name}")
+            print(f"Phone Number: {info['phone']}")
+            print(f"Email: {info['email']}")
+            print(f"Address: {info['address']}")
+            print("---------------------------")
+    elif choice == '3':
+        name = input("Enter the name: ")
+        search(name)
+    elif choice == '4':
+        update()
+    elif choice == '5':
+        delete()
+    elif choice == '6':
+        print("Exited successfully.")
+        break
+    else:
+        print("Invalid option, please choose a valid option.")
